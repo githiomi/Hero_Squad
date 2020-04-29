@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import org.sql2o.*;
 import models.Player;
@@ -31,21 +31,15 @@ public class Sql2oPlayerDao implements PlayerDao {
             return con.createQuery(sql)
                     .executeAndFetch(Player.class);
         }
-        catch (Sql2oException ex){
-            System.out.println(ex);
-        }
     }
 
     @Override
-    public Player getPlayerById(int id){
+    public Player getPlayerById(int id) {
         String sql = "SELECT * FORM squads WHERE id = :id";
-        try (Connection conn = sql2o.open()){
-            conn.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(sql)
                     .addParameter("id", id)
-                    .executeUpdate();
-        }
-        catch (Sql2oException ex){
-            System.out.println(ex);
+                    .executeAndFetchFirst(Player.class);
         }
     }
 
