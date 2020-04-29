@@ -1,4 +1,4 @@
-package Blueprints;
+package models;
 
 import java.util.Objects;
 

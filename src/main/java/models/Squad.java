@@ -1,17 +1,26 @@
-package Blueprints;
+package models;
 
 import java.util.Objects;
 
 public class Squad {
 
+    private int id;
     private String squadName;
     private String jerseyColor;
     private String strategy;
 
-    public Squad(String squadName, String nickName, String jerseyColor, String strategy){
+    public Squad(String squadName, String jerseyColor, String strategy) {
         this.squadName = squadName;
         this.jerseyColor = jerseyColor;
         this.strategy = strategy;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSquadName() {
@@ -43,13 +52,15 @@ public class Squad {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Squad squad = (Squad) o;
-        return squadName.equals(squad.squadName) &&
+        return id == squad.id &&
+                squadName.equals(squad.squadName) &&
                 jerseyColor.equals(squad.jerseyColor) &&
                 strategy.equals(squad.strategy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(squadName, jerseyColor, strategy);
+        return Objects.hash(id, squadName, jerseyColor, strategy);
     }
 }
+

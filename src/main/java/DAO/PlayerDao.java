@@ -1,8 +1,9 @@
 package DAO;
 
 import java.util.List;
+import models.Player;
 
-public interface Player {
+public interface PlayerDao {
 
 //    get a list of all players
     List<Player> getAll();
@@ -14,7 +15,7 @@ public interface Player {
     Player getPlayerById(int id);
 
 //    update player statistics
-    void updatePlayer(int id, String newName, int newAge, String newPosition, String newDominantHand);
+    void updatePlayer(String name, int age, String position, String dominantHand, int id);
 
 //    delete
     void deletePlayerById(int id);

@@ -1,9 +1,11 @@
 package DAO;
 
-import Blueprints.Player;
+import models.Squad;
+import models.Player;
+
 import java.util.List;
 
-public interface Squad {
+public interface SquadDao {
 
 //    get all squads
     List<Squad> getAll();
@@ -12,7 +14,7 @@ public interface Squad {
     void add(Squad squad);
 
 //    get squad by id
-    Squad findById();
+    Squad findById(int id);
 
 //    update a single squad
     void update(int squadId, String newName, String newJerseyColor, String newStrategy);
@@ -23,4 +25,5 @@ public interface Squad {
 //    delete
     void deleteById(int squadId);
     void deleteAll();
+
 }
