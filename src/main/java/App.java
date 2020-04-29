@@ -34,5 +34,27 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+
+        post("/homepage", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String enteredUsername = req.queryParams("username");
+            req.session().attribute("username", enteredUsername);
+                List<Squad> allSquads = squadDao.getAll();
+
+            model.put("squads", allSquads);
+            model.put("username", req.session().attribute("username"));
+            return new ModelAndView(model,"homepage.hbs");
+//            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/squads/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                List<Squad> allSquads = squadDao.getAll();
+                int squads = allSquads.size();
+
+            model.put("numberOfSquads", squads);
+            model.put("username", req.session().attribute("username"));
+            return new ModelAndView(model, "squadsview.hbs");
+        });
     }
 }

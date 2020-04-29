@@ -1,0 +1,30 @@
+{{#partial "pagetitle"}}
+    Welcome <span style="font-family:Monospace; text-decoration:underline;"> {{username}}, you are our newest manager</span>
+{{/partial}}
+
+{{#partial "content"}}
+
+    {{#if squads}}
+        {{#each squads}}
+            <br><hr>
+                <h3> <small> Here are your team's details: </small> </h3>
+                <ol>
+                    <li>Team name: <span style="font-family:Monospace; text-decoration:underline; font-weight:bold;"> {{squads.squadName}}</span> </li>
+                    <br>
+                    <button class="btn btn-danger"> View {{squads.squadName}} details.</button>
+                </ol>
+            <br><hr>
+            <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
+        {{/each}}
+
+    {{else}}
+        <br><hr>
+        <h3><cite>Sorry. You do not seem to have any teams yet</cite></h3>
+        <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
+    {{/if}}
+
+    <br><br>
+{{/partial}}
+
+
+{{> layout.hbs}}
