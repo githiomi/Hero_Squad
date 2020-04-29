@@ -6,12 +6,12 @@ public class Squad {
 
     private int id;
     private String squadName;
-    private String jerseyColor;
+    private String jersey;
     private String strategy;
 
-    public Squad(String squadName, String jerseyColor, String strategy) {
+    public Squad(String squadName, String jersey, String strategy) {
         this.squadName = squadName;
-        this.jerseyColor = jerseyColor;
+        this.jersey = jersey;
         this.strategy = strategy;
     }
 
@@ -31,12 +31,12 @@ public class Squad {
         this.squadName = squadName;
     }
 
-    public String getJerseyColor() {
-        return jerseyColor;
+    public String getJersey() {
+        return jersey;
     }
 
-    public void setJerseyColor(String jerseyColor) {
-        this.jerseyColor = jerseyColor;
+    public void setJersey(String jersey) {
+        this.jersey = jersey;
     }
 
     public String getStrategy() {
@@ -54,13 +54,13 @@ public class Squad {
         Squad squad = (Squad) o;
         return id == squad.id &&
                 squadName.equals(squad.squadName) &&
-                jerseyColor.equals(squad.jerseyColor) &&
+                jersey.equals(squad.jersey) &&
                 strategy.equals(squad.strategy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, squadName, jerseyColor, strategy);
+        return Objects.hash(id, squadName, jersey, strategy);
     }
 }
 

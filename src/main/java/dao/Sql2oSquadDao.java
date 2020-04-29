@@ -38,18 +38,18 @@ public class Sql2oSquadDao implements SquadDao {
     }
 
     @Override
-    public List<Player> getAllPlayersInSquad(int squadId){
-        String sql = "SELECT * FROM squads WHERE id = :id";
+    public List<Player> getAllPlayersInSquad(int squadId) {
+        String sql = "SELECT * FROM players WHERE squadId = :squadId";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
-                    .addParameter("id", squadId)
+                    .addParameter("squadId", squadId)
                     .executeAndFetch(Player.class);
         }
     }
 
     @Override
     public Squad findById(int id) {
-        String sql = "SELECT * FORM squads WHERE id = :id";
+        String sql = "SELECT * FROM squads WHERE id = :id";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("id", id)
@@ -59,7 +59,7 @@ public class Sql2oSquadDao implements SquadDao {
 
     @Override
     public void update(int id, String squadName, String jersey, String strategy) {
-        String sql = "UPDATE squads SET (squadName = :squadName, jersey = :jersey, strategy = :strategy) WHERE id = :id";
+        String sql = "UPDATE squads SET (squadName, jersey, strategy) = (:squadName, :jersey, :strategy) WHERE id = :id";
         try (Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -74,21 +74,20 @@ public class Sql2oSquadDao implements SquadDao {
     }
 
     @Override
-    public void deleteById(int id){
-        String sql = "REMOVE FROM squads WHERE id = :id";
+    public void deleteById(int id) {
+        String sql = "DELETE from squads WHERE id=:id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
-        }
-        catch (Sql2oException ex){
+        } catch (Sql2oException ex){
             System.out.println(ex);
         }
     }
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM squads";
+        String sql = "DELETE from squads";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();

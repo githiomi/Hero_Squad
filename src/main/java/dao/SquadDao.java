@@ -19,11 +19,11 @@ public interface SquadDao {
 //    update a single squad
     void update(int squadId, String newName, String newJerseyColor, String newStrategy);
 
-//    get all teams
+//    get all players in team
     List<Player> getAllPlayersInSquad(int squadId);
 
 //    delete
-    void deleteById(int squadId);
+    void deleteById(int id);
     void deleteAll();
 
 }
