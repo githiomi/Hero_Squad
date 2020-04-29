@@ -2,7 +2,6 @@ package DAO;
 
 import org.sql2o.*;
 import models.Player;
-
 import java.util.List;
 
 public class Sql2oPlayerDao implements PlayerDao {
@@ -73,7 +72,19 @@ public class Sql2oPlayerDao implements PlayerDao {
                     .executeUpdate();
         }
         catch (Sql2oException ex){
-            sy
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void deleteAllPlayers() {
+        String sql = "REMOVE FROM players";
+        try (Connection conn = sql2o.open() ){
+            conn.createQuery(sql)
+                    .executeUpdate();
+        }
+        catch (Sql2oException ex){
+            System.out.println(ex);
         }
     }
 

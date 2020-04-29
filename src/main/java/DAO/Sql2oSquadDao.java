@@ -5,11 +5,11 @@ import models.Player;
 import org.sql2o.*;
 import java.util.List;
 
-public class Sql2OSquadDao implements SquadDao {
+public class Sql2oSquadDao implements SquadDao {
 
     private final Sql2o sql2o;
 
-    public Sql2OSquadDao(Sql2o sql2o){
+    public Sql2oSquadDao(Sql2o sql2o){
         this.sql2o = sql2o;
     }
 
