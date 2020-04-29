@@ -1,0 +1,22 @@
+{{#partial "pagename"}}
+    Manager Details Page:
+{{/partial}}
+
+{{#partial "content"}}
+    <h1> <small> Here you enter your details as the new manager: </small> </h1>
+
+    <br><br>
+    <hr>
+
+    <div class="form-group">
+        <form action="/homepage" method="post">
+            <label for="username"> Enter your name here: </label>
+            <input id="username" name="username">
+        </form>
+    </div>
+
+    <hr>
+    <br><br>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
 
+    private int id;
     private String name;
     private int age;
     private String position;
@@ -23,7 +24,8 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return age == player.age &&
+        return id == player.id &&
+                age == player.age &&
                 squadId == player.squadId &&
                 name.equals(player.name) &&
                 position.equals(player.position) &&
@@ -32,7 +34,15 @@ public class Player {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age, position, dominantHand, squadId);
+        return Objects.hash(id, name, age, position, dominantHand, squadId);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

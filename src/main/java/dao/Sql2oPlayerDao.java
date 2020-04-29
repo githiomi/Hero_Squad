@@ -35,7 +35,7 @@ public class Sql2oPlayerDao implements PlayerDao {
 
     @Override
     public Player getPlayerById(int id) {
-        String sql = "SELECT * FORM squads WHERE id = :id";
+        String sql = "SELECT * FROM players WHERE id = :id";
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(sql)
                     .addParameter("id", id)
@@ -44,40 +44,39 @@ public class Sql2oPlayerDao implements PlayerDao {
     }
 
     @Override
-    public void updatePlayer(String name, int age, String position, String dominantHand, int id){
-        String sql = "UPDATE players SET (name = :name, age = :age, position = :position, dominantHand = :dominantHand) WHERE id = :id";
+    public void updatePlayer(int id, String name, int age, String position, String dominantHand, int squadId){
+        String sql = "UPDATE players SET (name, age, position, dominantHand, squadId) = (:name, :age, :position, :dominantHand, :squadId) WHERE id = :id";
         try (Connection conn = sql2o.open()){
             conn.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("squadId", squadId)
                     .addParameter("name", name)
                     .addParameter("age", age)
                     .addParameter("position", position)
                     .addParameter("dominantHand", dominantHand)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
 
     @Override
     public void deletePlayerById(int id) {
-        String sql = "REMOVE FROM players WHERE id = :id";
-        try (Connection conn = sql2o.open()) {
-            conn.createQuery(sql)
+        String sql = "DELETE from players WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
-        }
-        catch (Sql2oException ex){
+        } catch (Sql2oException ex){
             System.out.println(ex);
         }
     }
 
     @Override
     public void deleteAllPlayers() {
-        String sql = "REMOVE FROM players";
-        try (Connection conn = sql2o.open() ){
-            conn.createQuery(sql)
+        String sql = "DELETE from players";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
                     .executeUpdate();
-        }
-        catch (Sql2oException ex){
+        } catch (Sql2oException ex){
             System.out.println(ex);
         }
     }

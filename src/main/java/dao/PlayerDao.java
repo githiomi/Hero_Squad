@@ -15,7 +15,7 @@ public interface PlayerDao {
     Player getPlayerById(int id);
 
 //    update player statistics
-    void updatePlayer(String name, int age, String position, String dominantHand, int id);
+    void updatePlayer(int id, String name, int age, String position, String dominantHand, int squadId);
 
 //    delete
     void deletePlayerById(int id);
