@@ -122,6 +122,7 @@ public class App {
         get("/players/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
                 List<Squad> allSquads = squadDao.getAll();
+
             model.put("squads", allSquads);
             return new ModelAndView(model, "newplayer.hbs");
         }, new HandlebarsTemplateEngine());
@@ -134,6 +135,38 @@ public class App {
 
            model.put("player", specificPlayer);
            return new ModelAndView(model, "playerdetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/players", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                int players = playerDao.getAll().size();
+                List<Player> allPlayers = playerDao.getAll();
+
+           model.put("username", req.session().attribute("username"));
+           model.put("playersNumber", players);
+           model.put("players", allPlayers);
+           return new ModelAndView(model, "players.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/players", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                String name = req.queryParams("name");
+                int age = Integer.parseInt(req.queryParams("age"));
+                String position = req.queryParams("position");
+                String hand = req.queryParams("hand");
+                String squad = req.queryParams("squad");
+
+                Player newPlayer = new Player(name, age, position, hand, 1);
+                playerDao.add(newPlayer);
+
+                int players = playerDao.getAll().size();
+                List<Player> allPlayers = playerDao.getAll();
+
+            model.put("squad", squad);
+            model.put("username", req.session().attribute("username"));
+            model.put("playersNumber", players);
+            model.put("players", allPlayers);
+            return new ModelAndView(model, "players.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
