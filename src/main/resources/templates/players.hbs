@@ -1,0 +1,24 @@
+{{#partial "pagename"}}
+    {{username}}, these are your players
+{{/partial}}
+
+{{#partial "content"}}
+    <small> You have a total of {{playersNumber}} player(s)! </small>
+    <hr>{{#if players}}
+        <ol>
+            <li style="margin:10px;">{{players.name}}</li>
+            <br>
+            <a href="/players/:id"><small>Player details...</small></a>
+        </ol>
+    {{else}}
+        You do not have any players yet!
+        <br>
+        <a href="/players/new"> <button class="btn btn-danger">Add A Player</button> </a>
+    {{/if}}<hr>
+
+    <a href="/players"> <button class="btn btn-warning"> Delete All Players </button> </a>
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
+{{/partial}}
