@@ -5,9 +5,41 @@
 
 {{#partial "content"}}
 
+    <h1> <small> Team Details:</small> </h1>
+    <br><hr>
+
+    <p style="margin:7px;"> Jersey color: {{squad.jersey}}  </p>
+    <p> Game-play strategy: {{squad.strategy}}</p>
+
+    {{#if  players}}
+        Your team, {{squad.squadName}}, has the following players:
+        <ol>
+            <li style="margin:5px;">{{players.name}}
+                <br><hr> <a href="#"> <small> Player stats...</small></a>
+            </li>
+        </ol>
+
+        <br><hr>
+        <cite style="font-weight:bolder;"> Your team cannot have more than 5 players! <br> You have {{length}} player(s)</cite>
+        <br>
+
+        <a href="/players/new"><button class="btn btn-primary"> Add a new player </button> </a>
+    {{else}}
+        <br><hr>
+
+        <cite style="font-weight:bolder;"> Your team has no players at the moment! </cite>
+        <br>
+        <br>
+        <cite> <small> You cannot have more than 5 players here!</small></cite>
+        <br>
+        <br>
+        <a href="/players/new"><button class="btn btn-primary"> Add a new player </button> </a>
+    {{/if}}
 {{/partial}}
+
 {{#partial "footer"}}
-    <br>
+    <br><br><br>
+    <a href=""> <button class="btn btn-danger"> Delete All Players</button> </a>
 {{/partial}}
 
 {{> layout.hbs}}

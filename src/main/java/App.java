@@ -109,12 +109,24 @@ public class App {
             Integer squadId = Integer.parseInt(req.params("id"));
 
                 Squad specificSquad = squadDao.findById(squadId);
-                List<Player> allPlayers = playerDao.getAll();
+                List<Player> allPlayers = squadDao.getAllPlayersInSquad(squadId);
+                int playerLength = squadDao.getAllPlayersInSquad(squadId).size();
 
+            model.put("length", playerLength);
             model.put("username", req.session().attribute("username"));
             model.put("squad", specificSquad);
             model.put("players", allPlayers);
             return new ModelAndView(model, "squaddetails.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("players/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int playerId = Integer.parseInt(req.params("id"));
+
+                Player specificPlayer = playerDao.getPlayerById(playerId);
+
+           model.put("player", specificPlayer);
+           return new ModelAndView(model, "playerdetails.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
