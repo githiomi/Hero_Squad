@@ -14,13 +14,15 @@
     <br><hr>
     {{#if players}}
         Your team, {{squad.squadName}}, has the following players that you {{username}} manage:
-        {{#each players}}
-        <hr><ol>
-            <li style="margin:5px;">{{players.name}}
-                <br> <a href="/squads/{{squad.id}}/players/{{players.id}}"> <small> Player stats...</small></a>
-            </li>
-        </ol><hr>
-        {{/each}}
+        <br>
+        <a href="/squads/{{squad.id}}/players"> <button class="btn btn-default">View Players</button></a>
+<!--        {{#each players}}-->
+<!--        <hr><ol>-->
+<!--            <li style="margin:5px;">{{players.name}}-->
+<!--                <br> <a href="/squads/{{squad.id}}/players/{{players.id}}"> <small> Player stats...</small></a>-->
+<!--            </li>-->
+<!--        </ol><hr>-->
+<!--        {{/each}}-->
         <br><hr>
         <cite style="font-weight:bolder;"> Your team cannot have more than 5 players! <small> You now have {{length}} player(s) </small></cite>
         <br>

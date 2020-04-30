@@ -131,9 +131,9 @@ public class App {
             return new ModelAndView(model, "newplayer.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("squads/:id/players/:id", (req, res) -> {
+        get("squads/:ie/players/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int squadId = Integer.parseInt(req.params("id"));
+            int squadId = Integer.parseInt(req.params("ie"));
             int playerId = Integer.parseInt(req.params("id"));
 
                 Squad specificSquad = squadDao.findById(squadId);
@@ -144,21 +144,25 @@ public class App {
            return new ModelAndView(model, "playerdetails.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/players", (req, res) -> {
+        get("squads/:id/players", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(req.params("id"));
 
-
+                Squad squad = squadDao.findById(squadId);
                 int players = playerDao.getAll().size();
                 List<Player> allPlayers = playerDao.getAll();
 
+           model.put("squad", squad);
            model.put("username", req.session().attribute("username"));
            model.put("playersNumber", players);
            model.put("players", allPlayers);
            return new ModelAndView(model, "players.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/players", (req, res) -> {
+        post("/squads/:id/players", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int squadBelongs = Integer.parseInt(req.params("id"));
+
                 String name = req.queryParams("name");
                 int age = Integer.parseInt(req.queryParams("age"));
                 String position = req.queryParams("position");
@@ -168,10 +172,13 @@ public class App {
                 Player newPlayer = new Player(name, age, position, hand, squadId);
                 playerDao.add(newPlayer);
 
+                Squad squad_n = squadDao.findById(squadBelongs);
+                Squad squad = squadDao.findById(squadId);
                 int players = playerDao.getAll().size();
                 List<Player> allPlayers = playerDao.getAll();
 
-//            model.put("squad", squad);
+            model.put("squads", squad_n);
+            model.put("squad", squad);
             model.put("username", req.session().attribute("username"));
             model.put("playersNumber", players);
             model.put("players", allPlayers);
@@ -182,7 +189,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             int playerId = Integer.parseInt(req.params("id"));
                 playerDao.deletePlayerById(playerId);
-            res.redirect("/players");
+            res.redirect("/squads");
             return null;
         }, new HandlebarsTemplateEngine());
 

@@ -4,7 +4,7 @@
 
 {{#partial "content"}}
     <div class="bg-dark">
-        <form action="/players" method="post">
+        <form action="/squads/{{thisSquad.id}}/players" method="post">
 
             <div class="form-group">
                 <label for="name"> Player name: </label>
@@ -65,8 +65,7 @@
             </select>
                 <hr>
                 <br>
-                <br>
-                <a href="squads/{{thisSquad.id}}"> <button class="btn btn-success"> Add Player to Team </button> </a>
+                <button type="submit" class="btn btn-success"> Add Player to Team </button>
         </form>
     </div>
 {{/partial}}
