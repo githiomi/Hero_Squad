@@ -1,0 +1,35 @@
+{{#partial "pagename"}}
+    {{username}}, these are your {{squad.squadName}} players
+{{/partial}}
+
+{{#partial "content"}}
+    <small> {{squad.squadName}} has a total of {{playersNumber}} player(s)! </small>
+    <hr>{{#if players}}
+        {{#each players}}
+        <ol>
+            <li style="margin:10px;">{{name}}</li>
+            <br>
+            <a href="/squads/{{squad.id}}/players/{{id}}"><small>Player details...</small></a>
+        </ol>
+        {{/each}}
+        <hr>
+        <a href="/squads/{{squad.id}}"> <button class="btn btn-default"> Go back to {{squad.squadName}} </button> </a>
+    {{else}}
+        <br>
+        <hr>
+        You do not have any players yet!
+        <br>
+        <br>
+
+        <a href="/homepage"> <button class="btn btn-danger"> Go Back </button> </a>
+    {{/if}}<hr>
+
+
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
+    <a href="/squads/{{squad.id}}/players/delete"> <button style="margin:20px;" class="btn btn-danger">Delete All Players</button> </a>
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title class="jumbotron">
+        {{#block "title"}}VOLLEY MANAGER{{/block}}
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+</head>
+<body>
+<ul class="nav nav-tabs" style="font-family:Monospace">
+    <li role="presentation" class="active"><a href="/homepage">Home</a></li>
+    <li role="presentation" class="active"><a href="/squads/new">Add a New Squad</a></li>
+
+</ul>
+<div class="container">
+    <!--begin main template-->
+    <div class="page-header" style="text-align:center;">
+<!--        <img src="/images/layoutheader.jpeg" width="50%">-->
+        <h1> Welcome to Volley Manager </h1>
+        <img src="/images/layoutheader.jpeg" width="50%" alt="https://images.unsplash.com/photo-1556732282-595ef530909c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80">
+        <h1> {{#block "pagename"}}Welcome to Volley Manager </h1><br>
+    <h1><small>Create Your Fantasy VolleyBall Team And Watch Them Win</small></h1>{{/block}}
+    </div>
+
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+<!--end main template-->
+{{#block "footer"}}
+    <br><br><hr>
+    <footer class="footer">
+        <div class="container">
+            <hr>
+            <p class="text-muted">
+                <a href="/squads/delete"><button class="btn btn-danger">Delete All Squads</button> </a><br>
+                    <small> (You cannot undo this) </small>
+<!--                <a href="/tasks/delete">delete all tasks</a>-->
+            </p>
+        </div>
+    </footer>
+{{/block}}
+
+{{#block "ending"}}
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </html>
+{{/block}}

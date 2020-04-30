@@ -1,0 +1,61 @@
+{{#partial "pagename"}}
+    <cite> {{ username }}</cite>, from here you can add a new team.
+{{/partial}}
+
+{{#partial "content"}}
+
+    <div class="bg bg-dark" style="margin:10px; padding:10px; border-radius:10px;">
+
+        {{#if squads}}
+        <cite> These are your teams:</cite>
+        <ol>
+            <hr>
+            {{#each squads}}
+                <li>{{squadName}}</li>
+            {{/each}}
+               <br> <small>You cant have more than 3 teams!</small>
+            <hr>
+        </ol>
+        {{/if}}
+
+        <br><hr>
+        <form action="/squads" method="post">
+
+            <div class="form-group">
+                <label for="teamName"> Team name: </label>
+                <input id="teamName" name="teamName" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="jerseyColor"> Jersey Color: </label>
+                <input id="jerseyColor" name="jerseyColor" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="strategy">Select Strategy: </label>
+                <select required id="strategy" name="strategy">
+
+                    <div class="dropdown-menu">
+
+                    <option  style="width:50%; padding:5px;" value=""></option>
+                    <option  style="width:50%; padding:5px;" value="Attacking">Attacking</option>
+                    <option  style="width:50%; padding:5px;" value="Neutral">Neutral</option>
+                    <option  style="width:50%; padding:5px;" value="Defensive">Defensive</option>
+
+                    </div>
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Team</button>
+        </form>
+
+    </div>
+
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,0 +1,77 @@
+{{#partial "pagename"}}
+    Here you can add a new player.
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="bg-dark">
+        <form action="/squads/{{thisSquad.id}}/players" method="post">
+
+            <div class="form-group">
+                <label for="name"> Player name: </label>
+                <input id="name" name="name" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="age"> Player Age: </label>
+                <input id="age" name="age" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="position"> Player Position</label>
+                <select required id="position" name="position">
+
+                    <div class="dropdown-menu">
+
+                        <option  style="width:50%; padding:5px;" value=""></option>
+                        <option  style="width:50%; padding:5px;" value="Setter">Setter</option>
+                        <option  style="width:50%; padding:5px;" value="Libero">Libero</option>
+                        <option  style="width:50%; padding:5px;" value="Right-Hitter">Right Hitter</option>
+                        <option  style="width:50%; padding:5px;" value="LeftHitter">Left Hitter</option>
+                        <option  style="width:50%; padding:5px;" value="Middle Hitter">Middle Hitter</option>
+
+                    </div>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hand"> Player Dominant Hand: </label>
+                <select required id="hand" name="hand">
+
+                    <div class="dropdown-menu">
+
+                        <option  style="width:50%; padding:5px;" value=""></option>
+                        <option  style="width:50%; padding:5px;" value="Right">Right</option>
+                        <option  style="width:50%; padding:5px;" value="Left">Left</option>
+
+                    </div>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="squad"> Team: </label>
+                <select required id="squad" name="squad">
+
+                <div class="dropdown-menu">
+                    {{#if squads}}
+                        {{#each squads}}
+                    <option  style="width:50%; padding:5px;" value="{{thisSquad.id}}"> {{thisSquad.squadName}}</option>
+                         {{/each}}
+                    {{else}}
+                        <option  style="width:50%; padding:5px;" value=""></option>
+                        <option  style="width:50%; padding:5px;" value="">First create a team</option>
+                    {{/if}}
+                </div>
+
+            </select>
+                <hr>
+                <br>
+                <button type="submit" class="btn btn-success"> Add Player to Team </button>
+        </form>
+    </div>
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
+{{/partial}}
+
+{{>layout.hbs}}

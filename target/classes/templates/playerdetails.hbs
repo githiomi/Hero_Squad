@@ -1,0 +1,26 @@
+{{#partial "pagename"}}
+    {{players.name}}'s Profile.
+{{/partial}}
+
+{{#partial "content"}}
+    <div style="background-color:black; margin:20px; width:100px; height:100px; border-radius:100%;"></div>
+    <a href="#"> <button class="btn btn-default"> Edit {{players.name}} </button> </a>
+    <hr>
+    <ul>
+
+        <li><p> {{players.name}}'s age: {{players.age}}</p></li>
+        <li><p> {{players.name}}'s position: {{players.position}}</p></li>
+        <li><p> {{players.name}}'s dominant hand: {{players.dominantHand}}</p></li>
+        <li><p> You have put the player in {{squad.squadName}}'s team. </p></li>
+
+    </ul>
+    <a href="/squads/{{squad.id}}"> <button class="btn btn-default"> Back to {{squad.squadName}} </button> </a>
+    <hr>
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
+    <a href="/squads/{{squad.id}}/players/{{players.id}}/delete"> <button style="margin:20px;" class="btn btn-danger">Delete Player</button> </a>
+{{/partial}}
+
+{{> layout.hbs}}

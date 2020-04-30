@@ -1,0 +1,31 @@
+{{#partial "pagename"}}
+    {{username}}, these are your teams!
+{{/partial}}
+
+{{#partial "content"}}
+    {{#if squads}}
+        <h3> <small> Here are your team's details: </small> </h3>
+        {{#each squads}}
+            <hr>
+            <ol>
+                <li>Team name: <span style="font-family:Monospace; text-decoration:underline; font-weight:bold;"> {{squadName}}</span>
+                <br>
+                    <a href="/squads/{{id}}"> <button class="btn btn-danger"> View {{squadName}} details.</button> </a>
+                </li>
+            </ol>
+            <hr>
+        {{/each}}
+        <small> <span style="font-weight:bolder">YOU CAN'T HAVE MORE THAN 3 TEAMS. As of now you have {{numberOfSquads}} team(s)!</span> </small>
+            <br><br>
+        <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
+
+    {{else}}
+
+        <br><hr>
+        <h3><cite> Sorry. You do not seem to have any teams yet? </cite></h3>
+        <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
+
+    {{/if}}
+{{/partial}}
+
+{{>layout.hbs}}
