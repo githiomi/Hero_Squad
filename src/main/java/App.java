@@ -12,20 +12,23 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 
 public class App {
-    //    static int getHerokuAssignedPort() {
-//        ProcessBuilder processBuilder = new ProcessBuilder();
-//        if (processBuilder.environment().get("PORT") != null) {
-//            return Integer.parseInt(processBuilder.environment().get("PORT"));
-//        }
-//        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
-//    }
+        static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
     public static void main(String[] args) {
 
-//        port(getHerokuAssignedPort());
+        port(getHerokuAssignedPort());
         staticFileLocation("/public");
 
-        String connectionString = "jdbc:postgresql://localhost:5432/herosquad"; //connect to todolist, not todolist_test!
-        Sql2o sql2o = new Sql2o(connectionString, "dhosio", "MaFaD@niel2019");
+        String connectionString = "jdbc:postgres://ec2-52-86-73-86.compute-1.amazonaws.com/d6dqenmn35od3p"; //!
+        Sql2o sql2o = new Sql2o(connectionString, "ggkndvxzdxizac", "6eaba093d5d0b7edf9b75bd5f0cc8e26f0bbe68ea5dfac5bef49ef22e5081d97");
+
+//        String connectionString = "jdbc:postgresql://localhost:5432/herosquad"; //connect to todolist, not todolist_test!
+//        Sql2o sql2o = new Sql2o(connectionString, "dhosio", "MaFaD@niel2019");
 
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
         Sql2oPlayerDao playerDao = new Sql2oPlayerDao(sql2o);
