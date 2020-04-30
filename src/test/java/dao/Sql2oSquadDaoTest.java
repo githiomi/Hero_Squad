@@ -71,9 +71,11 @@ public class Sql2oSquadDaoTest {
         Player p2 = new Player("Daniel", 21, "Back", "Left", squad);
             playerDao.add(p1);
             playerDao.add(p2);
+            assertEquals(true, playerDao.getAll().contains(p1));
+            assertEquals(s1.getId(), squad);
         assertEquals(2, squadDao.getAllPlayersInSquad(squad).size());
-//        assertEquals(true, squadDao.getAllPlayersInSquad(squad).contains(p1));
-//        assertEquals(true, squadDao.getAllPlayersInSquad(squad).contains(p2));
+        assertEquals(true, squadDao.getAllPlayersInSquad(squad).contains(p1));
+        assertEquals(true, squadDao.getAllPlayersInSquad(squad).contains(p2));
     }
 
     @Test

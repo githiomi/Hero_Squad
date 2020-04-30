@@ -20,7 +20,10 @@ public class Sql2oPlayerDao implements PlayerDao {
                     .bind(player)
                     .executeUpdate()
                     .getKey();
-            player.setSquadId(id);
+            player.setId(id);
+        }
+        catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 

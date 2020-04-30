@@ -131,18 +131,22 @@ public class App {
             return new ModelAndView(model, "newplayer.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/players/:id", (req, res) -> {
+        get("squads/:id/players/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(req.params("id"));
             int playerId = Integer.parseInt(req.params("id"));
 
+                Squad specificSquad = squadDao.findById(squadId);
                 Player specificPlayer = playerDao.getPlayerById(playerId);
 
+           model.put("squad", specificSquad);
            model.put("players", specificPlayer);
            return new ModelAndView(model, "playerdetails.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/players", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+
 
                 int players = playerDao.getAll().size();
                 List<Player> allPlayers = playerDao.getAll();

@@ -38,11 +38,11 @@ public class Sql2oSquadDao implements SquadDao {
     }
 
     @Override
-    public List<Player> getAllPlayersInSquad(int squadId) {
-        String sql = "SELECT * FROM players WHERE squadId = :squadId";
+    public List<Player> getAllPlayersInSquad(int id) {
+        String sql = "SELECT * FROM players WHERE squadId = :id";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
-                    .addParameter("squadId", squadId)
+                    .addParameter("id", id)
                     .executeAndFetch(Player.class);
         }
     }

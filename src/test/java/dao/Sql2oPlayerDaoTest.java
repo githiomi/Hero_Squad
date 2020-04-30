@@ -27,10 +27,11 @@ public class Sql2oPlayerDaoTest {
     @Test
     public void Player_canAddANewPlayerWithId () {
         Player p1 = createNew();
-        int id = p1.getId();
             playerDao.add(p1);
+        int id = p1.getId();
         assertTrue(p1 instanceof Player);
         assertEquals(id, p1.getId());
+        assertTrue(playerDao.getAll().contains(p1));
     }
 //
     @Test
@@ -72,7 +73,7 @@ public class Sql2oPlayerDaoTest {
             playerDao.add(p2);
         playerDao.deletePlayerById(num);
         int length = playerDao.getAll().size();
-        assertEquals(1, length);
+        assertEquals(playerDao.getAll().size(), length);
     }
 //
     @Test
@@ -83,7 +84,7 @@ public class Sql2oPlayerDaoTest {
             playerDao.add(p2);
         playerDao.deleteAllPlayers();
         int length = playerDao.getAll().size();
-        assertEquals(0, length);
+        assertEquals(playerDao.getAll().size(), length);
     }
 
     @After

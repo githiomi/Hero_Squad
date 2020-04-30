@@ -13,11 +13,11 @@
 
     <br><hr>
     {{#if players}}
-        Your team, {{squad.squadName}}, has the following players:
+        Your team, {{squad.squadName}}, has the following players that you {{username}} manage:
         {{#each players}}
         <hr><ol>
             <li style="margin:5px;">{{players.name}}
-                <br> <a href="/squads/{{squad.id}}/players/{{player.id}}"> <small> Player stats...</small></a>
+                <br> <a href="/squads/{{squad.id}}/players/{{players.id}}"> <small> Player stats...</small></a>
             </li>
         </ol><hr>
         {{/each}}
@@ -25,9 +25,8 @@
         <cite style="font-weight:bolder;"> Your team cannot have more than 5 players! <small> You now have {{length}} player(s) </small></cite>
         <br>
 
-        <a href="/players/new"><button class="btn btn-primary"> Add a new player </button> </a>
+        <a href="/squads/{{squad.id}}/players/new"><button class="btn btn-primary"> Add a new player </button> </a>
     {{else}}
-        <br><hr>
 
         <cite style="font-weight:bolder;"> Your team has no players at the moment! </cite>
         <br>
@@ -41,7 +40,7 @@
 
 {{#partial "footer"}}
     <br><br><br>
-    <a href="/players/{{squad.id}}/delete"> <button class="btn btn-danger"> Delete All Players</button> </a>
+    <a href="/players/{{squad.id}}/delete"> <button style="margin:20px;" class="btn btn-danger"> Delete All Players</button> </a>
 {{/partial}}
 
 {{> layout.hbs}}
