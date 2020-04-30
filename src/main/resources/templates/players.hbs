@@ -5,11 +5,14 @@
 {{#partial "content"}}
     <small> You have a total of {{playersNumber}} player(s)! </small>
     <hr>{{#if players}}
+        {{#each players}}
         <ol>
-            <li style="margin:10px;">{{players.name}}</li>
+            <li style="margin:10px;">{{name}}</li>
             <br>
-            <a href="/players/:id"><small>Player details...</small></a>
+            <a href="/players/{{id}}"><small>Player details...</small></a>
         </ol>
+        {{/each}}
+        <hr>
     {{else}}
         You do not have any players yet!
         <br>
@@ -22,3 +25,5 @@
 {{#partial "footer"}}
     <br>
 {{/partial}}
+
+{{> layout.hbs}}

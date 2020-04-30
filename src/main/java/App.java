@@ -133,12 +133,13 @@ public class App {
 
                 Player specificPlayer = playerDao.getPlayerById(playerId);
 
-           model.put("player", specificPlayer);
+           model.put("players", specificPlayer);
            return new ModelAndView(model, "playerdetails.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/players", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+
                 int players = playerDao.getAll().size();
                 List<Player> allPlayers = playerDao.getAll();
 

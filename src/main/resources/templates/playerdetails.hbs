@@ -1,10 +1,22 @@
 {{#partial "pagename"}}
-    {{player.name}} Profile.
+    {{players.name}} Profile.
 {{/partial}}
 
 {{#partial "content"}}
+    <hr>
+    <ul>
 
+        <li><p> {{players.name}}'s age: {{players.age}}</p></li>
+        <li><p> {{players.name}}'s position: {{players.position}}</p></li>
+        <li><p> {{players.name}}'s dominant hand: {{players.dominantHand}}</p></li>
+        <li><p> You have put the player in {{players.squad}}'s team. </p></li>
+
+    </ul>
+    <hr>
 {{/partial}}
 
+{{#partial "footer"}}
+    <br>
+{{/partial}}
 
 {{> layout.hbs}}

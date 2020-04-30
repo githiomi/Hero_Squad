@@ -10,7 +10,9 @@
         <cite> These are your teams:</cite>
         <ol>
             <hr>
-            <li>{{squadName}}</li>
+            {{#each squads}}
+                <li>{{squadName}}</li>
+            {{/each}}
                <br> <small>You cant have more than 3 teams!</small>
             <hr>
         </ol>
