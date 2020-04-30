@@ -1,9 +1,9 @@
 {{#partial "pagename"}}
-    {{username}}, these are your players
+    {{username}}, these are your {{squad.squadName}} players
 {{/partial}}
 
 {{#partial "content"}}
-    <small> You have a total of {{playersNumber}} player(s)! </small>
+    <small> {{squad.squadName}} has a total of {{playersNumber}} player(s)! </small>
     <hr>{{#if players}}
         {{#each players}}
         <ol>
@@ -13,6 +13,7 @@
         </ol>
         {{/each}}
         <hr>
+        <a href="/squads/{{squad.id}}"> <button class="btn btn-default"> Go back to {{squad.squadName}} </button> </a>
     {{else}}
         <br>
         <hr>
@@ -28,7 +29,7 @@
 
 {{#partial "footer"}}
     <br>
-    <a href="/players/delete"> <button style="margin:20px;" class="btn btn-danger">Delete All Players</button> </a>
+    <a href="/squads/{{squad.id}}/players/delete"> <button style="margin:20px;" class="btn btn-danger">Delete All Players</button> </a>
 {{/partial}}
 
 {{> layout.hbs}}

@@ -11,18 +11,14 @@
     <p> Jersey's color: <div style="background-color:{{squad.jersey}}; margin:10px; width:50px; height:50px; border-radius:100%;"></div>  </p>
     <p> Game-play strategy: {{squad.strategy}}</p>
 
-    <br><hr>
+    <hr>
     {{#if players}}
-        Your team, {{squad.squadName}}, has the following players that you {{username}} manage:
+<!--        Your team, {{squad.squadName}}, has players!-->
         <br>
-        <a href="/squads/{{squad.id}}/players"> <button class="btn btn-default">View Players</button></a>
-<!--        {{#each players}}-->
-<!--        <hr><ol>-->
-<!--            <li style="margin:5px;">{{players.name}}-->
-<!--                <br> <a href="/squads/{{squad.id}}/players/{{players.id}}"> <small> Player stats...</small></a>-->
-<!--            </li>-->
-<!--        </ol><hr>-->
-<!--        {{/each}}-->
+        <a href="/squads/{{squad.id}}/players"> <button class="btn btn-default">View {{squad.squadName}} Players</button></a>
+        <br>
+        <a href="/squads"> <button class="btn btn-default" style="margin:8px;"> Back Home </button> </a>
+
         <br><hr>
         <cite style="font-weight:bolder;"> Your team cannot have more than 5 players! <small> You now have {{length}} player(s) </small></cite>
         <br>

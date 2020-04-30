@@ -185,19 +185,21 @@ public class App {
             return new ModelAndView(model, "players.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/players/:id/delete", (req, res) -> {
+        get("squads/:ie/players/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int squadId = Integer.parseInt(req.params("ie"));
             int playerId = Integer.parseInt(req.params("id"));
                 playerDao.deletePlayerById(playerId);
-            res.redirect("/squads");
+            res.redirect("/squads/" + squadId);
             return null;
         }, new HandlebarsTemplateEngine());
 
-        get("/players/delete", (req, res) -> {
+        get("squads/:id/players/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int squadToDeleteFrom = Integer.parseInt(req.params("id"));
 
                 playerDao.deleteAllPlayers();
-                res.redirect("/players");
+                res.redirect("/squads/" + squadToDeleteFrom);
              return null;
         }, new HandlebarsTemplateEngine());
     }
