@@ -95,5 +95,26 @@ public class App {
             model.put("username", req.session().attribute("username"));
             return new ModelAndView(model, "newsquad.hbs");
         },new HandlebarsTemplateEngine());
+
+        get("/squads/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                squadDao.deleteAll();
+                playerDao.deleteAllPlayers();
+            res.redirect("/squads");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/squads/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Integer squadId = Integer.parseInt(req.params("id"));
+
+                Squad specificSquad = squadDao.findById(squadId);
+                List<Player> allPlayers = playerDao.getAll();
+
+            model.put("username", req.session().attribute("username"));
+            model.put("squad", specificSquad);
+            model.put("players", allPlayers);
+            return new ModelAndView(model, "squaddetails.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

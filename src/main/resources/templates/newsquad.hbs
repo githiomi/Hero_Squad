@@ -1,5 +1,5 @@
 {{#partial "pagename"}}
-    <cite> {{ username }} </cite>, from here you can add a new team.
+    <cite> {{ username }}</cite>, from here you can add a new team.
 {{/partial}}
 
 {{#partial "content"}}
@@ -9,10 +9,10 @@
         {{#if squads}}
         <cite> These are your teams:</cite>
         <ol>
-            <br><hr>
+            <hr>
             <li>{{squadName}}</li>
-                <small>You cant have more than 3 teams!</small>
-            <br><hr>
+               <br> <small>You cant have more than 3 teams!</small>
+            <hr>
         </ol>
         {{/if}}
 
@@ -33,10 +33,14 @@
                 <label for="strategy">Select Strategy: </label>
                 <select required id="strategy" name="strategy">
 
-                    <option value=""></option>
-                    <option value="Attacking">Attacking</option>
-                    <option value="Neutral">Neutral</option>
-                    <option value="Defensive">Defensive</option>
+                    <div class="dropdown-menu">
+
+                    <option  style="width:50%; padding:5px;" value=""></option>
+                    <option  style="width:50%; padding:5px;" value="Attacking">Attacking</option>
+                    <option  style="width:50%; padding:5px;" value="Neutral">Neutral</option>
+                    <option  style="width:50%; padding:5px;" value="Defensive">Defensive</option>
+
+                    </div>
 
                 </select>
             </div>
