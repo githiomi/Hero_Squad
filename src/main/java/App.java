@@ -169,5 +169,13 @@ public class App {
             model.put("players", allPlayers);
             return new ModelAndView(model, "players.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/players/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int playerId = Integer.parseInt(req.params("id"));
+                playerDao.deletePlayerById(playerId);
+            res.redirect("/players");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

@@ -8,7 +8,8 @@
     <h1> <small> Team Details:</small> </h1>
     <br><hr>
 
-    <p style="margin:7px;"> Jersey color: {{squad.jersey}}  </p>
+    <p> Jersey's co
+        lor: {{squad.jersey}}  </p>
     <p> Game-play strategy: {{squad.strategy}}</p>
 
     {{#if  players}}
@@ -39,7 +40,7 @@
 
 {{#partial "footer"}}
     <br><br><br>
-    <a href="#"> <button class="btn btn-danger"> Delete All Players</button> </a>
+    <a href="/players/{{squad.id}}"> <button class="btn btn-danger"> Delete All Players</button> </a>
 {{/partial}}
 
 {{> layout.hbs}}
