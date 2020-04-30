@@ -47,8 +47,30 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="squad"> Team: </label>
+                <select required id="squad" name="squad">
+
+                <div class="dropdown-menu">
+                    {{#if squads}}
+                        {{#each squads}}
+                    <option  style="width:50%; padding:5px;" value=""></option>
+                    <option  style="width:50%; padding:5px;" value="{{squads.squadName}}"> {{squads.squadName}}</option>
+                         {{/each}}
+                    {{else}}
+                        <option  style="width:50%; padding:5px;" value=""></option>
+                        <option  style="width:50%; padding:5px;" value="">First create a team</option>
+                    {{/if}}
+                </div>
+
+            </select>
+
         </form>
     </div>
+{{/partial}}
+
+{{#partial "footer"}}
+    <br>
 {{/partial}}
 
 {{>layout.hbs}}
