@@ -79,7 +79,9 @@ public class App {
                 Squad newSquad = new Squad(teamName, jersey, strategy);
                 squadDao.add(newSquad);
                 List<Squad> allSquads = squadDao.getAll();
+                int squadNumber = squadDao.getAll().size();
 
+            model.put("numberOfSquads", squadNumber);
             model.put("username", request.session().attribute("username"));
             model.put("squads", allSquads);
             return new ModelAndView(model, "squadsview.hbs");
