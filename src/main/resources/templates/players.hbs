@@ -14,8 +14,12 @@
         {{/each}}
         <hr>
     {{else}}
+        <br>
+        <hr>
         You do not have any players yet!
         <br>
+        <br>
+
         <a href="/players/new"> <button class="btn btn-danger">Add A Player</button> </a>
     {{/if}}<hr>
 
@@ -24,7 +28,7 @@
 
 {{#partial "footer"}}
     <br>
-    <a href="/players"> <button style="margin:20px;" class="btn btn-danger">Delete All Players</button> </a>
+    <a href="/players/delete"> <button style="margin:20px;" class="btn btn-danger">Delete All Players</button> </a>
 {{/partial}}
 
 {{> layout.hbs}}

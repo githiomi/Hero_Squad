@@ -73,7 +73,7 @@ public class App {
         post("/squads", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
                 String teamName = request.queryParams("teamName");
-                String jersey = request.params("jerseyColor");
+                String jersey = request.queryParams("jerseyColor");
                 String strategy = request.queryParams("strategy");
 
                 Squad newSquad = new Squad(teamName, jersey, strategy);
@@ -119,10 +119,14 @@ public class App {
             return new ModelAndView(model, "squaddetails.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/players/new", (req, res) -> {
+        get("squads/:id/players/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-                List<Squad> allSquads = squadDao.getAll();
+            int id = Integer.parseInt(req.params("id"));
 
+                List<Squad> allSquads = squadDao.getAll();
+                Squad belonging = squadDao.findById(id);
+
+            model.put("thisSquad", belonging);
             model.put("squads", allSquads);
             return new ModelAndView(model, "newplayer.hbs");
         }, new HandlebarsTemplateEngine());
@@ -155,15 +159,15 @@ public class App {
                 int age = Integer.parseInt(req.queryParams("age"));
                 String position = req.queryParams("position");
                 String hand = req.queryParams("hand");
-                String squad = req.queryParams("squad");
+                int squadId = Integer.parseInt(req.queryParams("squad"));
 
-                Player newPlayer = new Player(name, age, position, hand, 1);
+                Player newPlayer = new Player(name, age, position, hand, squadId);
                 playerDao.add(newPlayer);
 
                 int players = playerDao.getAll().size();
                 List<Player> allPlayers = playerDao.getAll();
 
-            model.put("squad", squad);
+//            model.put("squad", squad);
             model.put("username", req.session().attribute("username"));
             model.put("playersNumber", players);
             model.put("players", allPlayers);
@@ -176,6 +180,14 @@ public class App {
                 playerDao.deletePlayerById(playerId);
             res.redirect("/players");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/players/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+
+                playerDao.deleteAllPlayers();
+                res.redirect("/players");
+             return null;
         }, new HandlebarsTemplateEngine());
     }
 }

@@ -54,8 +54,7 @@
                 <div class="dropdown-menu">
                     {{#if squads}}
                         {{#each squads}}
-                    <option  style="width:50%; padding:5px;" value=""></option>
-                    <option  style="width:50%; padding:5px;" value="{{squadName}}"> {{squadName}}</option>
+                    <option  style="width:50%; padding:5px;" value="{{thisSquad.id}}"> {{thisSquad.squadName}}</option>
                          {{/each}}
                     {{else}}
                         <option  style="width:50%; padding:5px;" value=""></option>
