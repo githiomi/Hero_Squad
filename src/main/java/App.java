@@ -40,21 +40,58 @@ public class App {
             String enteredUsername = req.queryParams("username");
             req.session().attribute("username", enteredUsername);
                 List<Squad> allSquads = squadDao.getAll();
+                int squadNumber = allSquads.size();
 
+            model.put("squadNum", squadNumber);
             model.put("squads", allSquads);
             model.put("username", req.session().attribute("username"));
             return new ModelAndView(model,"homepage.hbs");
-//            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/homepage", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                List<Squad> allSquads = squadDao.getAll();
+                int squadNumber = allSquads.size();
+
+            model.put("squadNum", squadNumber);
+            model.put("squads", allSquads);
+            model.put("username", req.session().attribute("username"));
+            return new ModelAndView(model, "homepage.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/squads", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+                List<Squad> allSquads = squadDao.getAll();
+                int squadNumber = allSquads.size();
+
+            model.put("squads", allSquads);
+            model.put("numberOfSquads", squadNumber);
+            model.put("username", req.session().attribute("username"));
+            return new ModelAndView(model, "squadsview.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/squads", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+                String teamName = request.queryParams("teamName");
+                String jersey = request.params("jerseyColor");
+                String strategy = request.queryParams("strategy");
+
+                Squad newSquad = new Squad(teamName, jersey, strategy);
+                squadDao.add(newSquad);
+                List<Squad> allSquads = squadDao.getAll();
+
+            model.put("username", request.session().attribute("username"));
+            model.put("squads", allSquads);
+            return new ModelAndView(model, "squadsview.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squads/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
                 List<Squad> allSquads = squadDao.getAll();
-                int squads = allSquads.size();
 
-            model.put("numberOfSquads", squads);
+            model.put("squads", allSquads);
             model.put("username", req.session().attribute("username"));
-            return new ModelAndView(model, "squadsview.hbs");
-        });
+            return new ModelAndView(model, "newsquad.hbs");
+        },new HandlebarsTemplateEngine());
     }
 }

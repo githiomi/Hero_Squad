@@ -1,0 +1,50 @@
+{{#partial "pagename"}}
+    <cite> {{ username }} </cite>, from here you can add a new team.
+{{/partial}}
+
+{{#partial "content"}}
+
+    <div class="bg bg-dark" style="margin:10px; padding:10px; border-radius:10px;">
+
+        {{#if squads}}
+        <cite> These are your teams:</cite>
+        <ol>
+            <br><hr>
+            <li>{{squads.squadName}}</li>
+            <br><hr>
+        </ol>
+        {{/if}}
+
+        <br><hr>
+        <form action="/squads" method="post">
+
+            <div class="form-group">
+                <label for="teamName"> Team name: </label>
+                <input id="teamName" name="teamName" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="jerseyColor"> Jersey Color: </label>
+                <input id="jerseyColor" name="jerseyColor" style="padding:10px; border-radius:10px; border:1px solid black; margin:10px; width:70%">
+            </div>
+
+            <div class="form-group">
+                <label for="strategy">Select Strategy: </label>
+                <select required id="strategy" name="strategy">
+
+                    <option value=""></option>
+                    <option value="Attacking">Attacking</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Defensive">Defensive</option>
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Team</button>
+        </form>
+        <br><hr>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,5 +1,5 @@
-{{#partial "pagetitle"}}
-    Welcome <span style="font-family:Monospace; text-decoration:underline;"> {{username}}, you are our newest manager</span>
+{{#partial "pagename"}}
+    Welcome <span style="font-family:Monospace; text-decoration:underline;"> {{username}},</span> you are our newest manager!
 {{/partial}}
 
 {{#partial "content"}}
@@ -14,12 +14,13 @@
                     <button class="btn btn-danger"> View {{squads.squadName}} details.</button>
                 </ol>
             <br><hr>
+            <small> <span style="font-weight:bolder">YOU CAN'T HAVE MORE THAN 3 TEAMS</span> Now you have {{squadNum}} teams.</small>
             <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
         {{/each}}
 
     {{else}}
         <br><hr>
-        <h3><cite>Sorry. You do not seem to have any teams yet</cite></h3>
+        <h3><cite>Sorry. You do not seem to have any teams yet?</cite></h3>
         <a href="/squads/new"> <button class="btn btn-warning"> Add a new team </button> </a>
     {{/if}}
 
