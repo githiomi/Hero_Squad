@@ -202,5 +202,11 @@ public class App {
                 res.redirect("/squads/" + squadToDeleteFrom);
              return null;
         }, new HandlebarsTemplateEngine());
+
+        get("squads/:id/update", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            res.redirect("/squads/" + id);
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }
